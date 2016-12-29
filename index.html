@@ -5,7 +5,24 @@
     <head>
 
         <title>Lydia Cuff's Webpage</title>
-
+		<style>
+			
+			#Art{
+				position: relative;
+				left: 200px;
+			}
+			
+			#glasses{
+				position: relative;
+				left: 150px;
+			}
+			
+			.programs{
+				border: 8px ridge gray;
+				margin: 30px;
+			}
+		
+		</style>
 
     </head>
 
@@ -27,8 +44,177 @@
   
         </ul>
         
-        <h2><a href="https://www.khanacademy.org/computer-programming/my-art/5968545061142528">My Art!</a></h2> <script src="https://www.khanacademy.org/computer-programming/my-art/5968545061142528/embed.js?editor=no&amp;buttons=no&amp;author=no&amp;embed=yes"></script> <p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a>.</p>  
-        <h2><a href="//www.khanacademy.org/computer-programming/3d-circle/5443848458862592"> Put on 3D Glasses!</a></h2><script src="https://www.khanacademy.org/computer-programming/my-art/5968545061142528/embed.js?editor=no&amp;buttons=no&amp;author=no&amp;embed=yes"></script> <p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a>.</p>  
-    </body>
+<!--        <h2><a href="https://www.khanacademy.org/computer-programming/my-art/5968545061142528">My Art!</a></h2> <script src="https://www.khanacademy.org/computer-programming/my-art/5968545061142528/embed.js?editor=no&amp;buttons=no&amp;author=no&amp;embed=yes"></script> <p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a>.</p> --> 
+<!--        <h2><a href="https://www.khanacademy.org/computer-programming/3d-circle/5443848458862592">Put on 3D Glasses!</a></h2><script src="https://www.khanacademy.org/computer-programming/3d-circle/5443848458862592/embed.js?editor=no&buttons=no&author=no&embed=yes"></script><p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a></p> -->
+<!--		<h2><a href="https://www.khanacademy.org/computer-programming/spin-off-of-challenge-lined-paper/6732045837271040">Cool Pattern</a></h2><script src="https://www.khanacademy.org/computer-programming/spin-off-of-challenge-lined-paper/6732045837271040/embed.js?editor=no&buttons=no&author=no&embed=yes"></script><p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a></p> -->
+<h2 id= "Art">My Art!</h2>
+    <p> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas2" class="programs"></canvas> 
+    </p>
+
+    <h2 id="glasses">Put on 3D Glasses!<h2>
+    <p> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas3" class="programs"></canvas> 
+    </p>
+
+
+	</body>
+
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc2 = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+var spinRect = function(centerX, centerY, recSize, numTurns, angleOffset) {
+    for (var j=0; j<numTurns; j++) {
+        // Draw a rectangle with lines
+        var angle = j*90/numTurns + angleOffset;
+        line(centerX + sin(angle)*recSize/sqrt(2), centerY + cos(angle)*recSize/sqrt(2), centerX - cos(angle)*recSize/sqrt(2), centerY + sin(angle)*recSize/sqrt(2));
+        line(centerX - sin(angle)*recSize/sqrt(2), centerY - cos(angle)*recSize/sqrt(2), centerX - cos(angle)*recSize/sqrt(2), centerY + sin(angle)*recSize/sqrt(2));
+        line(centerX - sin(angle)*recSize/sqrt(2), centerY - cos(angle)*recSize/sqrt(2), centerX + cos(angle)*recSize/sqrt(2), centerY - sin(angle)*recSize/sqrt(2));
+        line(centerX + sin(angle)*recSize/sqrt(2), centerY + cos(angle)*recSize/sqrt(2), centerX + cos(angle)*recSize/sqrt(2), centerY - sin(angle)*recSize/sqrt(2));
+    }
+
+};
+
+
+var speed = 1;
+var angle = 0;
+var sepSpeed = 0;
+var sep = 14;
+
+var draw = function() {
+    background(255, 255, 247);
+    stroke(151, 217, 237);
+    
+    
+
+    for (var i = 0; i < 20; i++) {
+        var pos = 20 + (i * 20);
+        line(pos, 0, 400, pos); 
+        line(400-pos, 400, 400, pos); 
+        line(400-pos, 400, 0, 400-pos); 
+        line(pos, 0, 0, 400-pos); 
+    }
+    
+    stroke(219, 114, 195);
+    
+    sep += sepSpeed/10;
+    if (sep >= 15) {sepSpeed = -sepSpeed;}
+    if (sep <= 0) {sepSpeed = -sepSpeed;}
+    
+    spinRect(200, 100, 100, 4, 15);
+    spinRect(200, 100, 100-sep, 4, 15);
+    spinRect(100, 200, 100, 4, 15);
+    spinRect(100, 200, 100-sep, 4, 15);
+    spinRect(300, 200, 100, 4, 15);
+    spinRect(300, 200, 100-sep, 4, 15);
+    spinRect(200, 300, 100, 4, 15);
+    spinRect(200, 300, 100-sep, 4, 15);
+    
+
+
+
+// Spinning centerpiece
+    stroke(219, 176, 48);
+    spinRect(200, 200, 60, 5, angle);
+    angle += speed;
+
+
+};
+}};
+
+
+    var sketchProc3 = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+
+var depth = 25;
+var leftColor = color(0, 255, 255);
+var rightColor = color(255, 0, 0, 127);
+
+var nearLimit = 30;
+var farLimit = 0;
+var movingIn = true;
+var xlocation = 330;
+var ylocation = 200;
+var sizeScale = 1;
+var xsize = 100;
+var ysize = xsize;
+var movingright = true;
+var movingdown = true;
+
+
+var draw= function() {
+    background(255, 255, 255);
+    noFill();
+    sizeScale = 1  - depth/90;
+    strokeWeight(20*sizeScale);
+    xsize = 100*sizeScale;
+    ysize = xsize;
+    
+    stroke(leftColor);
+    ellipse(xlocation-depth,ylocation,xsize,ysize);
+    
+    stroke(rightColor);
+    ellipse(xlocation+depth,ylocation,xsize,ysize);
+    
+    
+    stroke(0, 0, 0);
+    strokeWeight(2);
+    line(0, 100, 400, 100);
+    line(0, 200, 400, 200);
+    line(0, 300, 400, 300);
+    line(100, 0, 100, 400);
+    line(200, 0, 200, 400);
+    line(300, 0, 300, 400);
+    
+    if (depth >= nearLimit) {movingIn = false;}
+    if (depth <= farLimit) {movingIn = true;}
+    
+    if (movingIn) {
+        depth += 0.2;
+    } else {
+        depth -= 0.2;
+    }
+    
+    if (xlocation+xsize/2>375) {movingright=false;}
+    if (xlocation-xsize/2<25) {movingright=true;}
+    if (ylocation+xsize/2>395) {movingdown=false;}
+    if (ylocation-xsize/2<5) {movingdown=true;}
+    
+    if (movingright) {
+        xlocation += 2;
+    } else {
+        xlocation -= 2;
+    }
+    if (movingdown) {
+        ylocation += 2;
+    } else {
+        ylocation -= 2;
+    }
+};
+
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas2 = document.getElementById("mycanvas2"); 
+    var canvas3 = document.getElementById("mycanvas3"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance2 = new Processing(canvas2, sketchProc2); 
+    var processingInstance3 = new Processing(canvas3, sketchProc3); 
+ </script>
 
 </html>
