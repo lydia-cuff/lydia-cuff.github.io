@@ -53,11 +53,13 @@
       <canvas id="mycanvas2" class="programs"></canvas> 
     </p>
 
-    <h2 id="glasses">Put on 3D Glasses!<h2>
+    <h2 id="glasses">Put on 3D Glasses!</h2>
     <p> 
 	<!--This draws the Canvas on the webpage -->
-      <canvas id="mycanvas3" class="programs"></canvas> 
+      <canvas id="mycanvas3" class="programs"></canvas>
     </p>
+    
+        <h2 id="pi">This is going to be changed by JavaScript.</h2>
 
 
 	</body>
@@ -66,6 +68,11 @@
  <!-- Include the processing.js library -->
  <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
  <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ 
+ 
+ 
+ 
  
  <script>
     var sketchProc2 = function(processingInstance) {
@@ -216,5 +223,27 @@ var draw= function() {
     var processingInstance2 = new Processing(canvas2, sketchProc2); 
     var processingInstance3 = new Processing(canvas3, sketchProc3); 
  </script>
+ 
+ 
+<script>
+     var pi = 0;
+     var den = 1;
+     var multiplier = 1;
+     var element = document.getElementById("pi");
+     
+     var updatePi = function() {
+         // Do 1001 iterations each timer, to speed it up.
+         for (var i = 0; i<1001; i++) {
+             pi += multiplier*4/den;
+             
+             den += 2; // Increment to next odd number.
+             multiplier *= -1;
+             element.innerHTML = "&pi; &asymp; " + pi;
+         }
+     }
+
+    setInterval(updatePi, 1);
+</script>
+
 
 </html>
